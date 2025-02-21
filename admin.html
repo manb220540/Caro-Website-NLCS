@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <h1>Welcome to Admin Panel</h1>
+    <div id="admin-panel">
+        <h2>Admin Panel</h2>
+        <div>
+            <h3>Add Admin</h3>
+            <input type="text" id="new-admin-username" placeholder="New Admin Username">
+            <input type="password" id="new-admin-password" placeholder="New Admin Password">
+            <button id="add-admin">Add Admin</button>
+        </div>
+        <div id="delete-user-form">
+            <h3>Delete User</h3>
+            <!-- <label for="delete-username">Enter username to delete:</label> -->
+            <input type="text" id="delete-username" name="delete-username" placeholder="Enter username to delete" required>
+            <button id="delete-user">Delete User</button>
+        </div>
+        
+        <div>
+            <h3>Reset User Score</h3>
+            <input type="text" id="reset-username" placeholder="Username to Reset">
+            <button id="reset-score">Reset Score</button>
+        </div>
+        <div>
+            <h3>User List</h3>
+            <button id="list-users">Show Users</button>
+            <ul id="user-list"></ul>
+        </div>
+        <div>
+            <h3>Room Management</h3>
+            <button id="show-rooms-btn">Show Rooms</button>
+            <ul id="rooms-list"></ul>
+        </div>
+        
+    </div>
+    <button id="logout">Logout</button>
+    <script src="script/admin.js"></script>
+</body>
+</html>

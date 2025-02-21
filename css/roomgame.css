@@ -1,0 +1,266 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin: 20px;
+    font-size: 2.5em;
+    color: #007BFF;
+}
+
+#menu button,
+#game-settings button,
+#join-room-section button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#game-board {
+    display: grid;
+    margin: 20px auto;
+    width: 80vw;
+    max-width: 600px;
+    border: 2px solid #007BFF;
+    background-color: #fff;
+}
+
+.cell {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border: 1px solid #ccc;
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    user-select: none;
+}
+
+.cell.X {
+    color: #007BFF;
+}
+
+.cell.O {
+    color: #FF5733;
+}
+
+#message {
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+
+/* #chat-box {
+    display: none;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 300px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#chat-box h3 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #333;
+}
+
+#chat-messages {
+    height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: #fff;
+}
+#chat-input {
+    width: 80%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-right: 5px;
+}
+#chat-send-btn {
+    width: 18%;
+    padding: 5px;
+    border: none;
+    background-color: #007BFF;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+} */
+
+/* CSS cho icon chat */
+/* #chat-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+/* CSS cho chat-box */
+/* #chat-box {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
+    flex-direction: column;
+    z-index: 1000;
+}
+/* 
+/* Header của chat-box */
+/* #chat-box > div:first-child {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} */
+
+/* Nút đóng chat */
+/* #close-chat {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+} */
+
+/* Nội dung chat */
+/* #chat-content {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    border-bottom: 1px solid #ccc;
+} */
+
+/* Khu vực nhập chat */
+/* #chat-box > div:last-child {
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+#chat-input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#send-chat {
+    width: 40px;
+    height: 40px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}  */
+#chat-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #28a745;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 24px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+#chat-box {
+    position: fixed;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-areas: 
+                         "header"
+                         "content"
+                         "input";
+    bottom: 80px;
+    right: 20px;
+    width: 300px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    flex-direction: column;
+    z-index: 1000;
+}
+
+#chat-header {
+    grid-area: header;
+    background: #28a745;
+    color: white;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#chat-content {
+    grid-area: content;
+    height: 200px;
+    overflow-y: auto;
+    padding: 10px;
+    background: #f9f9f9;
+}
+
+#chat-input-container {
+    grid-area: input;
+    border-top: 1px solid #ddd;
+}
+
+#chat-input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+}
+
+#send-chat {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}

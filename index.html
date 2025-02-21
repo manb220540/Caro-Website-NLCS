@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Caro Game</title>
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    
+     <!-- <div id="auth-forms">
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button id="register">Register</button>
+        <button id="login">Login</button>
+    </div>   -->
+    <h1>Welcome to Caro Game  </h1>
+    <div id="auth-forms">
+    <h2>Login</h2>
+    <form id="login-form">
+         <!-- <label for="username">Username:</label> -->
+        <input type="text" id="username" name="username" placeholder="Username" required><br><br>
+        
+        <!-- <label for="password">Password:</label> -->
+        <input type="password" id="password" name="password" placeholder="Password" required><br><br> 
+         
+        <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="register.html">Register here</a></p>
+    <p id="reset-password-link" style="display: none; color: red;">
+        Too many failed attempts? <a href="reset-password.html">Reset your password</a>
+    </p>
+    </div>
+    <script src="script/auth.js">
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column; /* Đặt thành phần theo chiều dọc */
+}
+
+h1 {
+    margin-bottom: 10px;
+    font-size: 28px; /* Tăng kích thước chữ */
+    color: #333;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 20px; /* Kích thước nhỏ hơn h1 */
+    color: #555;
+}
+
+#auth-forms {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center; /* Căn văn bản bên trong về bên trái */
+}
+
+#auth-forms input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+#auth-forms button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background: linear-gradient(45deg, #4CAF50, #33b337);
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#auth-forms button:hover {
+    background: linear-gradient(45deg, #267528, #2a802d);
+}
+
+#auth-forms a {
+    display: block;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+#auth-forms a:hover {
+    text-decoration: underline;
+}

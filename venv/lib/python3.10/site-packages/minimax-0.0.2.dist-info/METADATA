@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: minimax
+Version: 0.0.2
+Summary: A configurable minimax package
+Home-page: https://github.com/bergurtareqtamimi/minimax_package
+Author: Bergur Tareq
+Author-email: bergurtamimi@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# minimax_package
+
+Configurable minimax
+
+

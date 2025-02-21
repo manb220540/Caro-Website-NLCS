@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caro Room Game</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>Caro Game - Play with a Friend</h1>
+
+    <div id="menu">
+        <button id="create-room-btn">Create Room</button>
+        <button id="join-room-btn">Join Room</button>
+        <button id="leave-room-btn">Leave Room</button>
+    </div>
+
+    <div id="create-room" style="display: none;">
+        <h2>Create a Room</h2>
+        <label for="room-id">Room ID:</label>
+        <input type="text" id="room-id" placeholder="Enter room ID (e.g., room123)" required>
+        <label for="board-size">Board Size:</label>
+        <select id="board-size">
+            <option value="3">3x3</option>
+            <option value="10">10x10</option>
+            <option value="15">15x15</option>
+            <option value="20" selected>20x20</option>
+        </select>
+        <button id="create-room-submit">Create Room</button>
+    </div>
+
+    <div id="join-room" style="display: none;">
+        <h2>Join a Room</h2>
+        <label for="join-room-id">Room ID:</label>
+        <input type="text" id="join-room-id" placeholder="Enter room ID (e.g., room123)" required>
+        <button id="join-room-submit">Join Room</button>
+    </div>
+    
+
+    <div id="game-area" style="display: none;">
+        <h2 id="room-info"></h2>
+        <div id="game-board"></div>
+        <p id="game-message"></p>
+    </div>
+    <!-- Chat Box -->
+    <!-- <div id="chat-icon" style="display: none;">💬</div>
+    
+        <div id="chat-box" style="display: none;">
+            <div>
+                Chat Box
+                <button id="close-chat">×</button>
+            </div>
+            <div id="chat-content"> -->
+                <!-- Nội dung chat sẽ xuất hiện ở đây -->
+            <!-- </div>
+            <div>
+                <input id="chat-input" type="text" placeholder="Type a message...">
+                <button id="send-chat">➤</button>
+            </div>
+        </div> -->
+        <!-- v2 -->
+         <!-- Chat Box -->
+    
+    <button onclick="window.location.href='menu.html';">Go back</button>
+    <div id="chat-icon" onclick="toggleChat()" style="display: none;">💬</div>
+
+    <div id="chat-box" style="display: none;">
+        <div id="chat-header">
+            <span>Chat Box</span>
+            <button id="close-chat" onclick="toggleChat()">×</button>
+        </div>
+        <div id="chat-content"></div>
+        <div id="chat-input-container">
+            <input id="chat-input" type="text" placeholder="Type a message...">
+            <button id="send-chat">➤</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    <script src="script/roomgame.js">
+    </script>
+    
+</body>
+</html>

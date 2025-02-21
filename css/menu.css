@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column; /* Đặt thành phần theo chiều dọc */
+}
+
+h1 {
+    margin-bottom: 10px;
+    font-size: 28px; /* Tăng kích thước chữ */
+    color: #333;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 20px; /* Kích thước nhỏ hơn h1 */
+    color: #555;
+}
+#menu {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center; /* Căn văn bản bên trong về bên trái */
+}
+#menu button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background: linear-gradient(45deg, #4CAF50, #33b337);
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#menu button:hover {
+    background: linear-gradient(45deg, #267528, #2a802d);
+}
+
+#logout {
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #eb4e3d, #f0412e);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px 0;
+    transition: background 0.3s;
+}
+
+#logout:hover {
+    background: linear-gradient(45deg, #e7331f, #eb1b08);
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caro Game 20x20</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/leaderboard.css">
+</head>
+<body>
+    <h1>Caro Game</h1>
+    <div id="settings">
+        <label for="board-size">Select Board Size:</label>
+        <select id="board-size">
+            <option value="3">3x3</option>
+            <option value="10">10x10</option>
+            <option value="15">15x15</option>
+            <option value="20" selected>20x20</option>
+        </select>
+    
+        <label for="difficulty">Select Difficulty:</label>
+        <select id="difficulty">
+            <option value="1">Easy (Player Goes First)</option>
+            <option value="3" selected>Hard (AI Goes First)</option>
+        </select>
+    
+        <button id="start-game">Start Game</button>
+        <button id="reset-game">Reset Game</button>
+    </div>
+
+    <div id="game-board"></div>
+    <p id="message"></p>
+    <div class="leaderboard">
+        <div class="leaderboard-header">Leaderboard</div>
+        <ul class="leaderboard-list" id="leaderboard">
+            <!-- Leaderboard content will be dynamically loaded here -->
+        </ul>
+    </div>
+    <button onclick="window.location.href='menu.html';">Go back</button>
+    <button id="logout">Logout</button>
+    
+    
+    
+    
+    <script src="script/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+h1 {
+    margin: 20px 0;
+}
+/* Bàn cờ */
+#game-board {
+    margin-top: 50px; /* Tăng khoảng cách từ bàn cờ đến các thành phần bên trên */
+    display: grid;
+    gap: 5px; /* Khoảng cách cố định giữa các ô */
+    margin: 20px auto;
+    grid-template-columns: repeat(var(--board-size), 40px);
+    grid-template-rows: repeat(var(--board-size), 40px);
+    justify-content: center;
+    align-items: center;
+    width: fit-content; /* Bàn cờ sẽ có kích thước vừa đủ cho các ô */
+    margin: 0 auto; /* Căn giữa bàn cờ */
+}
+.board-container { 
+
+    --board-size: 3; /* Đảm bảo giá trị này là 3 để tạo lưới 3x3 */
+    margin-top: 50px; 
+    display: grid;
+    gap: 5px; 
+    grid-template-columns: repeat(3, 40px); /* Sửa lại để đảm bảo 3 cột */
+    grid-template-rows: repeat(3, 40px); /* 3 hàng */
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    margin: 5px auto;
+}
+    
+
+/* .cell { width: 50px; 
+    height: 50px; 
+    text-align: center; 
+    font-size: 24px; 
+    border: 1px solid black; 
+    cursor: pointer; 
+} */
+        
+.tree-container { 
+    width: 100%; 
+    height: 500px; 
+    margin-top: 20px; 
+    border: 1px solid #ccc; 
+}
+/* Ô */
+.cell {
+    background-color: #ffffff; /* Màu trắng cho ô trống */
+    border: 1px solid #000; /* Đường viền ô */
+    width: 40px; /* Kích thước cố định */
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    box-sizing: border-box; /* Đảm bảo kích thước chính xác */
+    cursor: pointer;
+}
+
+/* X và O */
+.cell.X {
+    color: red; /* Màu đỏ cho X */
+}
+
+.cell.O {
+    color: blue; /* Màu xanh cho O */
+}
+
+.cell.taken {
+    background-color: #fafafa;
+    cursor: not-allowed;
+}
+
+#status {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: green;
+}
+
+#status.winner {
+    color: red;
+}
+
+/*Button*/
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+button:hover {
+    background-color: #45a049;
+}
+
+#logout {
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #eb4e3d, #f0412e);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px 0;
+    transition: background 0.3s;
+}
+
+#logout:hover {
+    background: linear-gradient(45deg, #e7331f, #eb1b08);
+}
+#menu {
+    display: flex;
+    justify-content: center; /* Căn giữa các nút */
+    gap: 10px; /* Khoảng cách giữa các nút */
+    margin-bottom: 20px; /* Khoảng cách giữa menu và bàn cờ */
+}
+
+#menu button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#create-room-btn {
+    background-color: #4caf50;
+    color: white;
+}
+
+#create-room-btn:hover {
+    background-color: #45a049;
+}
+
+#join-room-btn {
+    background-color: #008cba;
+    color: white;
+}
+
+#join-room-btn:hover {
+    background-color: #007bb5;
+}
+
+#leave-room-btn {
+    background-color: #f44336;
+    color: white;
+    display: none; /* Ẩn mặc định */
+}
+
+#leave-room-btn:hover {
+    background-color: #d32f2f;
+}
