@@ -1,9 +1,14 @@
 from flask import Flask, request, jsonify
 from flask_socketio import SocketIO, emit, join_room, leave_room
 from flask_cors import CORS
+from functools import wraps
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "http://127.0.0.1:5500"}})
+
+
+# CORS(app, resources={r"/*": {"origins": ["http://localhost:5000", "http://127.0.0.1:5000"]}})
+CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app, supports_credentials=True)  # Cho phép gửi cookie (session) trong các yêu cầu cross-origin 
 app.config["SECRET_KEY"] = "secret!"
 socketio = SocketIO(app, cors_allowed_origins="*")
 
@@ -268,5 +273,9 @@ def admin_delete_room():
         return jsonify({"error": str(e)}), 500
 
 
+@app.route("/")
+def index():
+    return "Socket server is running."
+
 if __name__ == "__main__":
-    socketio.run(app, debug=True, port=5001)
+    socketio.run(app, debug=True,host="0.0.0.0", port=5001)

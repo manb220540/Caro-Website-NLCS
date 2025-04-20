@@ -2,7 +2,7 @@
 // Xử lý logout
 document.getElementById("logout").addEventListener("click", () => {
     localStorage.removeItem("userId"); // Xóa session
-    window.location.href = "index.html"; // Quay lại trang đăng nhập
+    window.location.href = "/index"; // Quay lại trang đăng nhập
 });
 
 
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
         // Nếu không có userId trong session, hiển thị màn hình đăng nhập
         alert("User is not logged in.");
-        window.location.href = "index.html";
+        window.location.href = "/index";
         
     }
 });

@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, session
+from flask import Flask, request, jsonify, session, render_template
 #from minimax import initialize_board, find_best_move, board, AI, HUMAN, check_win, is_moves_left
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
@@ -6,10 +6,24 @@ from flask_bcrypt import Bcrypt
 import requests  # Thư viện để gửi HTTP request đến Flask-Socket.IO server
 #from caro_app import app, db
 import jwt #token
+# Khởi tạo Flask với thư mục template và static
+app = Flask(__name__, template_folder='template', static_folder='static')
 
-app = Flask(__name__)
+# Route cho trang chủ: Trả về index.html từ thư mục template
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+# Các route cho các trang HTML khác:
+@app.route('/<page_name>')
+def render_page(page_name):
+    try:
+        return render_template(f'{page_name}.html')
+    except Exception as e:
+        return "Page not found", 404
 # Cấu hình CORS
-CORS(app, resources={r"/*": {"origins": "http://127.0.0.1:5500"}})
+# CORS(app, resources={r"/*": {"origins": ["http://localhost:5001", "http://127.0.0.1:5001"]}})
+CORS(app, resources={r"/*": {"origins": "*"}})
 CORS(app, supports_credentials=True)  # Cho phép gửi cookie (session) trong các yêu cầu cross-origin  # Kích hoạt CORS cho tất cả các route
 app.secret_key = "secret_key"
 app.config['SESSION_COOKIE_NAME'] = 'cookie_name'
@@ -369,8 +383,12 @@ def login():
     if user and bcrypt.check_password_hash(user.password, data['password']):
         print("Current session:", session)
         session['user_id'] = user.id
+        session['logged_in'] = True
+        session['is_admin'] = user.is_admin
+        session['username'] = user.username
         session.modified = True
         print('user id login:',session['user_id']) #debug
+        print('logged_in:',session['logged_in'])
         return jsonify({"message": "Login successful",
                         "userId": user.id,
                         "is_admin": user.is_admin  # Trả về thông tin quyền admin
@@ -379,7 +397,9 @@ def login():
 
 @app.route('/logout', methods=['POST'])
 def logout():
-    session.pop('user_id', None)
+    # session.pop('user_id', None)
+    # Xóa toàn bộ session để đảm bảo không còn dữ liệu đăng nhập
+    session.clear()
     return jsonify({"message": "Logged out successfully!"}), 200
 
 @app.route('/update-score', methods=['POST'])
@@ -403,29 +423,6 @@ def leaderboard():
     top_users = User.query.filter(User.is_admin == False).order_by(User.score.desc()).limit(10).all()
     leaderboard = [{"username": user.username, "score": user.score} for user in top_users]
     return jsonify(leaderboard)
-# @app.route('/update-score', methods=['POST'])
-# def update_score():
-#     data = request.json
-#     user_id = data.get('userId')
-#     score = data.get('score')
-
-#     user = User.query.get(user_id)
-#     if not user:
-#         return jsonify({"message": "User not found!"}), 404
-
-#     user.score += score  # Cập nhật điểm
-#     db.session.commit()
-
-#     # Sau khi cập nhật, LẤY LUÔN BẢNG XẾP HẠNG MỚI
-#     top_users = User.query.filter(User.is_admin == False).order_by(User.score.desc()).limit(10).all()
-#     leaderboard = [{"username": u.username, "score": u.score} for u in top_users]
-
-#     # CHỈ trả về cho người vừa cập nhật
-#     return jsonify({
-#         "message": "Score updated successfully!",
-#         "leaderboard": leaderboard
-#     }), 200
-
 
 @app.route('/add-admin', methods=['POST'])
 def add_admin():
@@ -434,13 +431,7 @@ def add_admin():
     """
     current_user_id = session.get('user_id')
     current_user = db.session.get(User, current_user_id)
-    #current_user = User.query.get(current_user_id)
-
-    #error
-    # Kiểm tra quyền admin
-    # if not current_user or not current_user.is_admin:
-    #     return jsonify({"message": "Unauthorized"}), 403
-    #error
+    
 
     data = request.json
     username = data.get('username')
@@ -462,22 +453,7 @@ def delete_user():
     """
     Chỉ admin mới có thể xóa tài khoản người dùng.
     """
-    # Lấy user_id từ session
-    #current_user_id = session.get('user_id')
     
-    #error
-    # Kiểm tra nếu người dùng chưa đăng nhập
-    # if not current_user_id:
-    #     return jsonify({"message": "Unauthorized"}), 403  # Chưa đăng nhập
-    #error
-    # Lấy thông tin người dùng từ DB
-    #current_user = db.session.get(User, current_user_id)
-
-    #error
-    # Kiểm tra quyền admin
-    # if not current_user or not current_user.is_admin:
-    #     return jsonify({"message": "Unauthorized"}), 403  # Không phải admin
-    #error
     
     data = request.json
     username = data.get('username')
@@ -510,13 +486,6 @@ def reset_score():
     print("Current session:", session)  # Debug: in ra session để kiểm tra
     print("current_user_id",session.get('user_id')) #debug
     print("current_user",current_user) #debug
-    #current_user = User.query.get(current_user_id)
-
-    #error
-    # Kiểm tra quyền admin
-    # if not current_user or not current_user.is_admin:
-    #     return jsonify({"message": "Unauthorized"}), 403
-    #error
     
     
     data = request.json
@@ -541,17 +510,9 @@ def list_users():
     current_user_id = session.get('user_id')
     print("list-user",session.get('user_id')) #debug
     
-    #error
-    # if not current_user_id:
-    #     return jsonify({"message": "Unauthorized"}), 403  # Chưa đăng nhập
-    #error
-    #current_user = User.query.get(current_user_id)
+    
     current_user = db.session.get(User, current_user_id)
-    #error
-    # Kiểm tra quyền admin
-    # if not current_user or not current_user.is_admin:
-    #     return jsonify({"message": "Unauthorized"}), 403
-    #error
+    
     # Lấy danh sách người dùng
     users = User.query.all()
     user_list = [{"username": u.username, "score": u.score, "is_admin": u.is_admin} for u in users]
@@ -598,9 +559,7 @@ def reset_password():
         #current_password = data.get('currentPassword')  # Mật khẩu hiện tại (nếu cần xác thực)
         new_password = data.get('newPassword')  # Mật khẩu mới
 
-        # Kiểm tra dữ liệu hợp lệ
-        # if not username or not new_password:
-        #     return jsonify({"message": "Invalid input data!"}), 400
+        
 
         # Lấy người dùng từ database
         print(username)
@@ -609,9 +568,7 @@ def reset_password():
         if not user:
             return jsonify({"message": "User not found!"}), 404
 
-        # Nếu yêu cầu xác thực mật khẩu hiện tại (tuỳ chỉnh)
-        # if current_password and not bcrypt.check_password_hash(user.password, current_password):
-        #     return jsonify({"message": "Current password is incorrect!"}), 403
+        
 
         # Mã hóa và cập nhật mật khẩu mới
         hashed_new_pw = bcrypt.generate_password_hash(new_password).decode('utf-8')
@@ -640,31 +597,28 @@ def check_winner(board, player):
 @app.route("/admin/rooms", methods=["GET"])
 def get_rooms_from_socketio():
     try:
-        # Gửi request đến server Flask-Socket.IO (5001)
-        response = requests.get("http://127.0.0.1:5001/admin/rooms")
+        # Lấy hostname từ request (ví dụ: "192.168.1.29")
+        host = request.host.split(":")[0]
+        api_url = f"http://{host}:5001"
+        response = requests.get(f"{api_url}/admin/rooms")
         response.raise_for_status()  # Kiểm tra lỗi HTTP
-
-        # Trả về JSON response
         return jsonify(response.json()), response.status_code
     except requests.exceptions.RequestException as e:
         return jsonify({"error": f"Failed to fetch rooms: {str(e)}"}), 500
 
-# Proxy endpoint: Xóa phòng từ Flask-Socket.IO server
 @app.route("/admin/delete-room", methods=["POST"])
 def delete_room_from_socketio():
     try:
         room_id = request.json.get("room_id")
         if not room_id:
             return jsonify({"error": "Room ID is required."}), 400
-
-        # Gửi request xóa phòng đến Flask-Socket.IO (5001)
+        host = request.host.split(":")[0]
+        api_url = f"http://{host}:5001"
         response = requests.post(
-            "http://127.0.0.1:5001/admin/delete-room",
+            f"{api_url}/admin/delete-room",
             json={"room_id": room_id}
         )
         response.raise_for_status()  # Kiểm tra lỗi HTTP
-
-        # Trả về JSON response
         return jsonify(response.json()), response.status_code
     except requests.exceptions.RequestException as e:
         return jsonify({"error": f"Failed to delete room: {str(e)}"}), 500
@@ -674,7 +628,7 @@ if __name__ == "__main__":
     with app.app_context():
         db.create_all()  # Khởi tạo bảng trong cơ sở dữ liệu
         create_default_admin()  # Thêm admin mặc định nếu chưa tồn tại
-    app.run(debug=True)
+    app.run(debug=True,host="0.0.0.0")
 
 
 

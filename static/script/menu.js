@@ -2,7 +2,7 @@
 // Xử lý logout
 document.getElementById("logout").addEventListener("click", () => {
     sessionStorage.removeItem("userId"); // Xóa session
-    window.location.href = "index.html"; // Quay lại trang đăng nhập
+    window.location.href = "/index"; // Quay lại trang đăng nhập
 });
 
 function checkAuth() {  
@@ -10,7 +10,7 @@ function checkAuth() {
     console.log(userId)
     if (!userId) {
         alert("User is not logged in.");
-        window.location.href = "index.html";
+        window.location.href = "/index";
         return false;
     }
     return true;

@@ -5,31 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Caro Game Tree</title>
     <script src="https://d3js.org/d3.v6.min.js"></script>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="static/css/style.css">
     <style>
-        /*body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        .board-container {
-            display: grid;
-            grid-template-columns: repeat(3, 50px);
-            gap: 5px;
-            margin: 20px auto;
-        }
-        .cell {
-            width: 50px;
-            height: 50px;
-            font-size: 24px;
-            text-align: center;
-        }
-        #tree {
-            border: 1px solid #ccc;
-            margin-top: 20px;
-            width: 800px;
-            height: 500px;
-            margin: 20px auto;
-        }*/
+       
         table {
             border-collapse: collapse;
             margin: 0 auto;
@@ -49,7 +27,8 @@
 <body>
     <h1>Caro Game</h1>
     <div id="settings">
-        <button id="start-game">Bắt đầu lại</button>
+        <button id="start-game">reset game</button>
+        <button onclick="window.location.href='/menu';">Go back</button>
         <button id="logout">Logout</button>
     </div>
 
@@ -59,7 +38,7 @@
         <label for="max-depth">Độ sâu tối đa:</label>
         <input type="number" id="max-depth" value="10" min="1" max="20">
     </div>
-    <button id="generate-tree">Tạo cây trò chơi</button>
+    <button id="generate-tree">Generate game tree</button>
 
     <h2>Kết quả</h2>
     <div id="game-board"></div>
@@ -69,6 +48,6 @@
     
     
 
-    <script src="script/learncaro.js"></script>
+    <script src="static/script/learncaro.js"></script>
 </body>
 </html>

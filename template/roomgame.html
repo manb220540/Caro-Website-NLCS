@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Caro Room Game</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="static/css/style.css">
 </head>
 <body>
     <h1>Caro Game - Play with a Friend</h1>
@@ -42,26 +42,9 @@
         <div id="game-board"></div>
         <p id="game-message"></p>
     </div>
-    <!-- Chat Box -->
-    <!-- <div id="chat-icon" style="display: none;">💬</div>
     
-        <div id="chat-box" style="display: none;">
-            <div>
-                Chat Box
-                <button id="close-chat">×</button>
-            </div>
-            <div id="chat-content"> -->
-                <!-- Nội dung chat sẽ xuất hiện ở đây -->
-            <!-- </div>
-            <div>
-                <input id="chat-input" type="text" placeholder="Type a message...">
-                <button id="send-chat">➤</button>
-            </div>
-        </div> -->
-        <!-- v2 -->
-         <!-- Chat Box -->
     
-    <button onclick="window.location.href='menu.html';">Go back</button>
+    <button onclick="window.location.href='/menu';">Go back</button>
     <div id="chat-icon" onclick="toggleChat()" style="display: none;">💬</div>
 
     <div id="chat-box" style="display: none;">
@@ -77,7 +60,7 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
-    <script src="script/roomgame.js">
+    <script src="static/script/roomgame.js">
     </script>
     
 </body>

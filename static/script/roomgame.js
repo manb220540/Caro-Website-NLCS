@@ -1,5 +1,11 @@
+// Lấy thông tin protocol (http hoặc https) và hostname hiện tại của trang
+const protocol = window.location.protocol; // "http:" hoặc "https:"
+const host = window.location.hostname;     // ví dụ: "localhost", "127.0.0.1", hoặc "192.168.1.29"
 
-const socket = io("http://127.0.0.1:5001");
+// Thiết lập các biến API_BASE_URL sử dụng protocol, hostname và cổng tương ứng
+const API_BASE_URL_5000 = `${protocol}//${host}:5000`;
+const API_BASE_URL_5001 = `${protocol}//${host}:5001`;
+const socket = io(`${API_BASE_URL_5001}`);
 
 // DOM Elements
 const createRoomBtn = document.getElementById("create-room-btn");
@@ -346,7 +352,7 @@ function checkAuth() {
     console.log(userId)
     if (!userId) {
         alert("User is not logged in.");
-        window.location.href = "index.html";
+        window.location.href = "/index";
         return false;
     }
     return true;
